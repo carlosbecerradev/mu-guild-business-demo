@@ -1,7 +1,18 @@
 <template>
   <div id="app">
-    <router-view/>
+    <div class="bg-gray-50 min-h-screen relative">
+      <MainNavbar></MainNavbar>
+      <router-view/>
+    </div>
   </div>
 </template>
 
-<style>
+<script>
+import MainNavbar from '@/components/Nav/MainNavbar'
+
+export default {
+  components: {
+    MainNavbar,
+  },
+}
+</script>
