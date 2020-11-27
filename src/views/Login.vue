@@ -8,7 +8,7 @@
           </h2>
         </div>
         <span class="sr-only">login form</span>
-        <form>
+        <form @submit.prevent="login(user_account)">
           <div class="overflow-hidden sm:rounded-md">
             <div class="py-4">
               <div class="grid grid-cols-6 gap-6">
@@ -63,6 +63,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: "Login",
   data() {
@@ -72,6 +73,9 @@ export default {
         password: "",
       },
     };
+  },
+  methods: {
+    ...mapActions(['login'])
   },
 };
 </script>
