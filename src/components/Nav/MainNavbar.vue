@@ -68,6 +68,11 @@
                 class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700"
                 :class="{ 'text-white bg-gray-900': $route.name == 'Home' }"
                 >Home</router-link>
+              <router-link
+                to="/mu-servers"
+                class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700"
+                :class="{ 'text-white bg-gray-900': $route.name == 'MU Servers' }"
+                >MU Servers</router-link>
             </div>
           </div>
         </div>
@@ -139,6 +144,13 @@
       <div class="px-2 pt-2 pb-3 space-y-1">
         <router-link
           to="/"
+          class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700"
+          :class="{ 'text-white bg-gray-900': $route.name == 'Home' }"
+          >Home</router-link>
+      </div>
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <router-link
+          to="/mu-servers"
           class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700"
           :class="{ 'text-white bg-gray-900': $route.name == 'Home' }"
           >Home</router-link>
