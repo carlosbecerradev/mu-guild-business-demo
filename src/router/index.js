@@ -19,6 +19,11 @@ const routes = [
     name: 'MU Servers',
     component: () => import(/* webpackChunkName: "login" */ '../views/MUServers.vue')
   },
+  {
+    path: '/mu-server/:id',
+    name: 'MU Server',
+    component: () => import(/* webpackChunkName: "MUServer" */ '../views/MUServer.vue')
+  },
 ]
 
 const router = new VueRouter({
