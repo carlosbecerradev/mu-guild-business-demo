@@ -72,12 +72,14 @@
           </div>
         </div>
         <!-- Login -->
-        <div v-if="isLogged" class="cursor-pointer px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700"
-          :class="{ 'text-white bg-gray-900': $route.name == 'Login' }">
-          <router-link to="login">login</router-link>
-        </div>
+        <router-link to="login">
+          <div v-if="getUsername == null" class="cursor-pointer px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700"
+            :class="{ 'text-white bg-gray-900': $route.name == 'Login' }">
+            login
+          </div>
+        </router-link>
 
-        <div v-if="!isLogged" class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+        <div v-if="getUsername != null" class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
           <!-- Profile dropdown -->
           <div class="ml-3 relative">
             <div>
@@ -92,7 +94,7 @@
                   type="submit"
                   class="text-gray-400 inline-flex items-center hover:text-white"
                 >
-                  Charspunk
+                  {{ getUsername }}
                   <svg
                     class="-mr-1 ml-2 h-5 w-5"
                     xmlns="http://www.w3.org/2000/svg"
@@ -118,17 +120,14 @@
               aria-labelledby="user-menu"
             >
               <a
-                href="../views/profile.html"
-                class="block px-4 py-2 text-sm text-gray-700 hover:text-white hover:bg-gray-700"
+                class="block px-4 py-2 text-sm text-gray-700 hover:text-white hover:bg-gray-700 cursor-pointer"
                 role="menuitem"
-                >Your Profile</a
-              >
+                >Your Profile</a>
               <a
-                href=""
-                class="block px-4 py-2 text-sm text-gray-700 hover:text-white hover:bg-gray-700"
+                @click="logout(); dropdown = !dropdown"
+                class="block px-4 py-2 text-sm text-gray-700 hover:text-white hover:bg-gray-700 cursor-pointer"
                 role="menuitem"
-                >Sign out</a
-              >
+                >Sign out</a>
             </div>
           </div>
         </div>
@@ -149,13 +148,23 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
   data() {
     return {
       menuDropdown: false,
       dropdown: false,
-      isLogged: false,
     };
   },
+  computed: {
+    ...mapGetters(['getUsername']),
+  },
+  methods: {
+    ...mapActions(['logout', 'isAuthenticated']),
+  },
+  updated(){
+    this.isAuthenticated()
+  }
 };
 </script>
