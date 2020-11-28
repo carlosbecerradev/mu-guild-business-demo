@@ -77,7 +77,7 @@
           </div>
         </div>
         <!-- Login -->
-        <router-link to="login">
+        <router-link to="/login">
           <div v-if="getUsername == null" class="cursor-pointer px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700"
             :class="{ 'text-white bg-gray-900': $route.name == 'Login' }">
             login
@@ -152,8 +152,8 @@
         <router-link
           to="/mu-servers"
           class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700"
-          :class="{ 'text-white bg-gray-900': $route.name == 'Home' }"
-          >Home</router-link>
+          :class="{ 'text-white bg-gray-900': $route.name == 'MU Servers' }"
+          >MU Servers</router-link>
       </div>
     </div>
   </nav>
