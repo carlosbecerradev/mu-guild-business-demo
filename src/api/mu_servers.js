@@ -18,4 +18,12 @@ export default {
   getAll(cb) {
     setTimeout(() => cb(_mu_servers), 100)
   },
+  findMUServerbyId(mu_server_id){
+    let mu_server = new MUServer
+    setTimeout(
+      mu_server = _mu_servers.find(({id}) => id == mu_server_id)
+      , 100)
+    console.log('api', mu_server)
+    return mu_server
+  }
 }
