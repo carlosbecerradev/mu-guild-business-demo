@@ -6,12 +6,12 @@ const state = {
 }
 
 const actions = {
-  getAllMUServers({ commit }){
+  getAllMUServers({ commit }) {
     mu_servers_api.getAll(mu_servers => {
       commit('recieve_mu_servers', mu_servers)
     })
   },
-  async fetchMUServer({commit}, id){
+  async fetchMUServer({ commit }, id) {
     try {
       let response = await mu_servers_api.findMUServerbyId(id)
       console.log('store', response)
@@ -23,19 +23,19 @@ const actions = {
 }
 
 const mutations = {
-  recieve_mu_servers(state, mu_servers){
+  recieve_mu_servers(state, mu_servers) {
     state.all = mu_servers
   },
-  recieve_mu_server(state, mu_server){
+  recieve_mu_server(state, mu_server) {
     state.mu_server = mu_server
   },
 }
 
 const getters = {
-  allMUServers(state){
+  allMUServers(state) {
     return state.all
   },
-  getCurrentMUServer(state){
+  getCurrentMUServer(state) {
     return state.mu_server
   },
 }
