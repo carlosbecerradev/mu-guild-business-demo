@@ -13,9 +13,10 @@ const actions = {
   },
   async fetchMUServer({ commit }, id) {
     try {
-      let response = await mu_servers_api.findMUServerbyId(id)
-      console.log('store', response)
-      commit('recieve_mu_server', response)
+      await mu_servers_api.findMUServerbyId(id, mu_server => {
+        commit('recieve_mu_server', mu_server)
+        // console.log('mu_server_store', mu_server)
+      })
     } catch (error) {
       console.log(error)
     }
