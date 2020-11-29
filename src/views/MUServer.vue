@@ -89,7 +89,7 @@
                     clip-rule="evenodd"
                   />
                 </svg>
-                {{ getCurrentMUServer.created }}
+                {{ useTimeAgo(getCurrentMUServer.created) }}
               </div>
             </div>
           </div>
@@ -121,12 +121,14 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import useTimeAgo from '@/helpers/time_ago'
 export default {
   computed: {
     ...mapGetters(["getCurrentMUServer"]),
   },
   methods: {
     ...mapActions(["fetchMUServer"]),
+    useTimeAgo,
   },
   created() {
     this.fetchMUServer(this.$route.params.id);
