@@ -116,12 +116,15 @@
         </div>
       </div>
     </header>
+    <MUServerNavigation></MUServerNavigation>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import useTimeAgo from '@/helpers/time_ago'
+import useTimeAgo from "@/helpers/time_ago";
+import MUServerNavigation from "@/components/mu-server/MUServerNavigation";
+
 export default {
   computed: {
     ...mapGetters(["getCurrentMUServer"]),
@@ -132,6 +135,9 @@ export default {
   },
   created() {
     this.fetchMUServer(this.$route.params.id);
+  },
+  components: {
+    MUServerNavigation,
   },
 };
 </script>
