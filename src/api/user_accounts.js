@@ -14,17 +14,10 @@ export default {
   getAll(cb) {
     setTimeout(() => cb(_user_accounts), 100)
   },
-  validateAccount(user_account) {
-    let result
-    setTimeout(
-      result = _user_accounts.filter(({ username, password }) => username === user_account.username && password === user_account.password)
-      , 100)
-      console.log('result', result)
-    if (result.length != 0) {
-      let userAccount = new UserAccount(result[0].username, result[0].password)
-      console.log('userAccount', userAccount)
-      return userAccount
-    }
-    return null
+  validateAccount(user_account, cb) {
+    let userAccount = new UserAccount
+    userAccount = _user_accounts.find(({ username, password }) => username === user_account.username && password === user_account.password)
+    setTimeout(() => cb(userAccount), 100)
+    console.log('user_accounts_api', userAccount)
   }
 }

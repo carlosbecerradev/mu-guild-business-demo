@@ -13,13 +13,14 @@ const actions = {
     })
   },
   login({ commit }, user_account) {
-    const response = user_accounts_api.validateAccount(user_account)
-    if (response != null) {
-      localStorage.setItem('username', user_account.username)
-      commit('set_username', user_account.username)
-      router.push('/')
-      console.log(response)
-    }
+    user_accounts_api.validateAccount(user_account, userAccount => {
+      if (userAccount != null) {
+        localStorage.setItem('username', user_account.username)
+        commit('set_username', user_account.username)
+        router.push('/')
+        console.log('user_acounts_store', userAccount)
+      }
+    })
   },
   logout({commit}) {
     localStorage.removeItem('username')
