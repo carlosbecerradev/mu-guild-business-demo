@@ -22,13 +22,13 @@ const actions = {
       }
     })
   },
-  logout({commit}) {
+  logout({ commit }) {
     localStorage.removeItem('username')
     commit('set_username', null)
     router.push('/login')
   },
-  isAuthenticated({commit}) {
-    if(localStorage.getItem('username')){
+  isAuthenticated({ commit }) {
+    if (localStorage.getItem('username')) {
       commit('set_username', localStorage.getItem('username'))
     }
   }
@@ -38,7 +38,7 @@ const mutations = {
   recieve_user_accounts(state, user_accounts) {
     state.all = user_accounts
   },
-  set_username(state, payload){
+  set_username(state, payload) {
     state.username = payload
   },
 }
@@ -47,7 +47,7 @@ const getters = {
   allUserAccounts(state) {
     return state.all
   },
-  getUsername(state){
+  getUsername(state) {
     return state.username
   },
 }
