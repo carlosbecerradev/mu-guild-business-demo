@@ -117,6 +117,7 @@
       </div>
     </header>
     <MUServerNavigation></MUServerNavigation>
+    <MUServerContent></MUServerContent>
   </div>
 </template>
 
@@ -124,6 +125,7 @@
 import { mapActions, mapGetters } from "vuex";
 import useTimeAgo from "@/helpers/time_ago";
 import MUServerNavigation from "@/components/mu-server/MUServerNavigation";
+import MUServerContent from "@/components/mu-server/MUServerContent";
 
 export default {
   computed: {
@@ -138,6 +140,7 @@ export default {
   },
   components: {
     MUServerNavigation,
+    MUServerContent,
   },
 };
 </script>
