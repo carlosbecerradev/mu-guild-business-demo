@@ -1,8 +1,3 @@
-const _mu_servers = [
-  { "id": 1, "name": "MU PVP", "version": "99b + S2", "website": "https://muonlinepvp.net", "coins": "WCoins", "created": Date.now() },
-  { "id": 2, "name": "MU Titanio", "version": "S6", "website": "https://mutitanio.com/", "coins": "WCoins", "created": Date.now() },
-]
-
 class MUServer {
   constructor(id, name, version, website, coins, created) {
     this.id = id
@@ -25,3 +20,12 @@ export default {
     // console.log('mu_server_api', mu_server)
   },
 }
+const _mu_servers = [
+  { "id": 1, "name": "MU PVP", "version": "99b + S2", "website": "https://muonlinepvp.net", "coins": "WCoins", "state": true, "created": Date.now() },
+  { "id": 2, "name": "MU Titanio", "version": "S6", "website": "https://mutitanio.com/", "coins": "WCoins", "state": true, "created": Date.now() },
+]
+
+const _mu_servers_dto = [
+  { "id": 1, "name": "MU PVP", "state": true },
+  { "id": 2, "name": "MU Titanio", "state": true },
+]
