@@ -15,11 +15,8 @@ export default {
     let item = new Item
     item = _items.find(({ id }) => id == item_id)
     setTimeout(() => cb(item), 100)
-    console.log('item_api-findbyId', item)
+    console.log('items_api-findbyId', item)
   },
-  getKeys(){
-    return Object.keys(_items[0])
-  }
 }
 
 const _items = [
