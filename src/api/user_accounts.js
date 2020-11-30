@@ -1,6 +1,11 @@
 const _user_accounts = [
-  { "username": "chars", "password": "12345" },
-  { "username": "admin", "password": "12345" }
+  { "id": 1, "username": "chars", "password": "12345", "nickname": "Charspunk" },
+  { "id": 2, "username": "admin", "password": "12345", "nickname": "Shodan" },
+]
+
+const _user_accounts_dto = [
+  { "id": 1, "nickname": "Charspunk" },
+  { "id": 2, "nickname": "Shodan" },
 ]
 
 class UserAccount {
