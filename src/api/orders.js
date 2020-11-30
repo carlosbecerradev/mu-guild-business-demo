@@ -1,3 +1,28 @@
+class Order {
+  constructor(id, item, item_level, item_options, observation, user_account, state, created) {
+    this.id = id
+    this.item = item
+    this.item_level = item_level
+    this.item_options = item_options
+    this.observation = observation
+    this.user_account = user_account
+    this.state = state
+    this.created = created
+  }
+}
+
+export default {
+  getAll(cb) {
+    setTimeout(() => cb(_orders), 100)
+  },
+  getbyId(order_id, cb) {
+    let order = new Order
+    order = _orders.find(({ id }) => id == order_id)
+    setTimeout(() => cb(order), 100)
+    console.log('orders_api-findbyId', order)
+  },
+}
+
 const _orders = [
   {
     "id": 1,

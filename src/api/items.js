@@ -1,3 +1,27 @@
+class Item {
+  constructor(id, name, item_category, state) {
+    this.id = id
+    this.name = name
+    this.item_category = item_category
+    this.state = state
+  }
+}
+
+export default {
+  getAll(cb) {
+    setTimeout(() => cb(_items), 100)
+  },
+  getbyId(item_id, cb) {
+    let item = new Item
+    item = _items.find(({ id }) => id == item_id)
+    setTimeout(() => cb(item), 100)
+    console.log('item_api-findbyId', item)
+  },
+  getKeys(){
+    return Object.keys(_items[0])
+  }
+}
+
 const _items = [
   {
     "id": 1,
