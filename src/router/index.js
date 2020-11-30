@@ -17,7 +17,7 @@ const routes = [
   {
     path: '/mu-servers',
     name: 'MU Servers',
-    component: () => import(/* webpackChunkName: "login" */ '../views/MUServers.vue')
+    component: () => import(/* webpackChunkName: "MUServers" */ '../views/MUServers.vue')
   },
   {
     path: '/mu-server/:id',
