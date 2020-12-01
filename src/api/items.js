@@ -8,15 +8,6 @@ class Item {
 }
 
 export default {
-  getAll(cb) {
-    setTimeout(() => cb(_items), 100)
-  },
-  getbyId(item_id, cb) {
-    let item = new Item
-    item = _items.find(({ id }) => id == item_id)
-    setTimeout(() => cb(item), 100)
-    console.log('items_api-findbyId', item)
-  },
 }
 
 const _items = [

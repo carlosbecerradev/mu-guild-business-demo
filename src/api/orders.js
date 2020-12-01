@@ -13,15 +13,6 @@ class Order {
 }
 
 export default {
-  getAll(cb) {
-    setTimeout(() => cb(_orders), 100)
-  },
-  getbyId(order_id, cb) {
-    let order = new Order
-    order = _orders.find(({ id }) => id == order_id)
-    setTimeout(() => cb(order), 100)
-    console.log('orders_api-findbyId', order)
-  },
 }
 
 const _orders = [
