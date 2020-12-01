@@ -99,7 +99,7 @@
                   type="submit"
                   class="text-gray-400 inline-flex items-center hover:text-white"
                 >
-                  {{ getUsername }}
+                  {{ getNickname }}
                   <svg
                     class="-mr-1 ml-2 h-5 w-5"
                     xmlns="http://www.w3.org/2000/svg"
@@ -170,7 +170,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['getUsername']),
+    ...mapGetters(['getUsername', 'getNickname']),
   },
   methods: {
     ...mapActions(['logout', 'isAuthenticated']),
