@@ -6,7 +6,7 @@ const state = {
 
 const actions = {
   fetchMUServerOrdersByMuServerId({ commit }, mu_server_id) {
-    commit('recieve_mu_server_orders', orders_api.getAllByMUServerId(mu_server_id))
+    commit('recieve_mu_server_orders', orders_api.getAllByMUServerIdAndStateTrue(mu_server_id))
   }
 }
 
