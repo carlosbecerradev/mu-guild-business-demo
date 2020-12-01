@@ -4,6 +4,7 @@ import router from '@/router'
 const state = {
   all: [],
   username: null,
+  nickname: null,
 }
 
 const actions = {
@@ -17,6 +18,7 @@ const actions = {
       if (userAccount != null) {
         localStorage.setItem('username', user_account.username)
         commit('set_username', user_account.username)
+        commit('set_nickname', userAccount.nickname)
         router.push('/')
         console.log('user_acounts_store', userAccount)
       }
@@ -25,11 +27,14 @@ const actions = {
   logout({ commit }) {
     localStorage.removeItem('username')
     commit('set_username', null)
+    commit('set_nickname', null)
     router.push('/login')
   },
   isAuthenticated({ commit }) {
-    if (localStorage.getItem('username')) {
-      commit('set_username', localStorage.getItem('username'))
+    let username = localStorage.getItem('username')
+    if (username) {
+      commit('set_username', username)
+      commit('set_nickname', user_accounts_api.getByUsername(username).nickname)
     }
   }
 }
@@ -41,6 +46,9 @@ const mutations = {
   set_username(state, payload) {
     state.username = payload
   },
+  set_nickname(state, nickname) {
+    state.nickname = nickname
+  },
 }
 
 const getters = {
@@ -49,6 +57,9 @@ const getters = {
   },
   getUsername(state) {
     return state.username
+  },
+  getNickname(state) {
+    return state.nickname
   },
 }
 

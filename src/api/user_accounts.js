@@ -14,7 +14,10 @@ export default {
     userAccount = _user_accounts.find(({ username, password }) => username === user_account.username && password === user_account.password)
     setTimeout(() => cb(userAccount), 100)
     console.log('user_accounts_api', userAccount)
-  }
+  },
+  getByUsername(username) {
+    return _user_accounts.find(user_account => user_account.username == username)
+  },
 }
 
 const _user_accounts = [
