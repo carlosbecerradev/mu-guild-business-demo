@@ -15,7 +15,10 @@ class Order {
 export default {
   getAllByMUServerIdAndStateTrue(mu_server_id) {
     return _orders.filter(order => order.mu_server.id == mu_server_id && order.state == true)
-  }
+  },
+  getAllByMUServerIdAndUserAccountNicknameAndStateTrue(mu_server_id, user_account_nickname) {
+    return _orders.filter(order => order.mu_server.id == mu_server_id && order.user_account.nickname == user_account_nickname && order.state == true)
+  },
 }
 
 const _orders = [
