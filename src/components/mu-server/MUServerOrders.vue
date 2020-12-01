@@ -44,21 +44,26 @@
                       <div class="flex items-center">
                         <div class="">
                           <div class="text-sm font-medium text-gray-900">
-                            {{order.item.name}} <span>+{{order.item_level}}</span>
+                            {{ order.item.name }}
+                            <span>+{{ order.item_level }}</span>
                           </div>
                           <div class="text-sm text-gray-500">
-                            {{order.item_options.name}}
+                            {{ order.item_options.name }}
                           </div>
                         </div>
                       </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                      <div class="text-sm text-gray-900">{{order.user_account.nickname}}</div>
-                      <div class="text-sm text-gray-500">{{order.created}}</div>
+                      <div class="text-sm text-gray-900">
+                        {{ order.user_account.nickname }}
+                      </div>
+                      <div class="text-sm text-gray-500">
+                        {{ useTimeAgo(order.created) }}
+                      </div>
                     </td>
                     <td class="px-6 py-4 text-sm text-gray-500">
                       <p class="m-0 overflow-auto max-h-20 flex items-baseline">
-                        {{order.observation}}
+                        {{ order.observation }}
                       </p>
                     </td>
                   </tr>
@@ -73,17 +78,19 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from "vuex";
+import useTimeAgo from "@/helpers/time_ago";
 
 export default {
   computed: {
-    ...mapGetters(['getMUServerOrders'])
+    ...mapGetters(["getMUServerOrders"]),
   },
   methods: {
-    ...mapActions(['fetchMUServerOrdersByMuServerId'])
+    ...mapActions(["fetchMUServerOrdersByMuServerId"]),
+    useTimeAgo,
   },
-  created(){
-    this.fetchMUServerOrdersByMuServerId(this.$route.params.id)
-  }
-}
+  created() {
+    this.fetchMUServerOrdersByMuServerId(this.$route.params.id);
+  },
+};
 </script>
