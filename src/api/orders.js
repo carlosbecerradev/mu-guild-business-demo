@@ -13,6 +13,9 @@ class Order {
 }
 
 export default {
+  getAllByMUServerId(mu_server_id) {
+    return _orders.filter(order => order.mu_server.id == mu_server_id)
+  }
 }
 
 const _orders = [
