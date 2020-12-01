@@ -22,10 +22,10 @@ export default {
 
 const _user_accounts = [
   { "id": 1, "username": "chars", "password": "12345", "nickname": "Charspunk" },
-  { "id": 2, "username": "admin", "password": "12345", "nickname": "Shodan" },
+  { "id": 2, "username": "admin", "password": "12345", "nickname": "Administrator" },
 ]
 
 const _user_accounts_dto = [
   { "id": 1, "nickname": "Charspunk" },
-  { "id": 2, "nickname": "Shodan" },
+  { "id": 2, "nickname": "Administrator" },
 ]
