@@ -10,8 +10,8 @@ class OrderHistory {
 }
 
 export default {
-  getAllByMUServerId(mu_server_id) {
-    return _order_history.filter(order_history_item => order_history_item.order.mu_server.id == mu_server_id)
+  getAllByMUServerIdAndUserAccountNickname(mu_server_id, user_account_nickname) {
+    return _order_history.filter(order_history_item => order_history_item.order.mu_server.id == mu_server_id && order_history_item.order.user_account.nickname == user_account_nickname)
   },
 }
 

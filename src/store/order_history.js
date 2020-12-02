@@ -5,8 +5,8 @@ const state = {
 }
 
 const actions = {
-  fetchMyMUServerOrderHistoryByMuServerId({ commit }, mu_server_id) {
-    commit('receive_my_mu_server_order_history', order_history_api.getAllByMUServerId(mu_server_id))
+  fetchMyMUServerOrderHistoryByMuServerIdAndUserAccountLoggedIn({ commit }, { mu_server_id, user_account_nickname }) {
+    commit('receive_my_mu_server_order_history', order_history_api.getAllByMUServerIdAndUserAccountNickname(mu_server_id, user_account_nickname))
   }
 }
 
