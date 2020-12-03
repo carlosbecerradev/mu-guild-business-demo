@@ -4,7 +4,10 @@
       <div class="content">
         <button
           @click="
-            toggleMUServerModal()
+            toggleMUServerModal({
+              name: getMUServerModal.currentName,
+              action: getMUServerModal.currentAction,
+            })
           "
           class="exit absolute right-0 top-0 w-10 h-10"
         >
@@ -22,17 +25,27 @@
             />
           </svg>
         </button>
+        <MUServerNewOrder
+          v-if="getMUServerModal.order.new"
+        ></MUServerNewOrder>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
+import MUServerNewOrder from "@/components/mu-server/MUServerNewOrder";
 
 export default {
+  computed: {
+    ...mapGetters(["getMUServerModal"]),
+  },
   methods: {
     ...mapActions(["toggleMUServerModal"]),
+  },
+  components: {
+    MUServerNewOrder,
   },
 };
 </script>
