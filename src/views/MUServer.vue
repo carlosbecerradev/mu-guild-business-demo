@@ -95,7 +95,6 @@
           </div>
           <div class="mt-5 flex md:mt-0 md:ml-4">
             <button
-              onclick="document.location.href='save-order.html'"
               class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               <svg
@@ -118,6 +117,7 @@
     </header>
     <MUServerNavigation></MUServerNavigation>
     <MUServerContent></MUServerContent>
+    <MUServerModal></MUServerModal>
   </div>
 </template>
 
@@ -126,6 +126,7 @@ import { mapActions, mapGetters } from "vuex";
 import useTimeAgo from "@/helpers/time_ago";
 import MUServerNavigation from "@/components/mu-server/MUServerNavigation";
 import MUServerContent from "@/components/mu-server/MUServerContent";
+import MUServerModal from "@/components/mu-server/MUServerModal";
 
 export default {
   computed: {
@@ -141,6 +142,7 @@ export default {
   components: {
     MUServerNavigation,
     MUServerContent,
+    MUServerModal,
   },
 };
 </script>
