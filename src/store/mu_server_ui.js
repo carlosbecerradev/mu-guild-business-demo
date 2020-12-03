@@ -1,6 +1,9 @@
 const state = {
   mu_server_navigation_list: ["Orders", "My Orders", "Order History"],
   mu_server_navigation_list_item_selected: null,
+  mu_server_modal: {
+    state: false,
+  },
 }
 
 const actions = {
@@ -10,6 +13,9 @@ const actions = {
   setInitialMUServerNavigationListItemSelected({ commit, state }) {
     commit('change_mu_server_navigation_list_item_selected', state.mu_server_navigation_list[0])
   },
+  toggleMUServerModal({ commit }) {
+    commit('toggle_mu_server_modal')
+  }
 }
 
 const mutations = {
@@ -18,6 +24,9 @@ const mutations = {
   },
   change_mu_server_navigation_list_item_selected(state, mu_server_navigation_list_item_selected) {
     state.mu_server_navigation_list_item_selected = mu_server_navigation_list_item_selected
+  },
+  toggle_mu_server_modal(state) {
+    state.mu_server_modal.state = !state.mu_server_modal.state
   },
 }
 
@@ -28,6 +37,9 @@ const getters = {
   getMUServerNavigationListItemSelected(state) {
     return state.mu_server_navigation_list_item_selected
   },
+  getMUServerModal(state) {
+    return state.mu_server_modal
+  }
 }
 
 export default {

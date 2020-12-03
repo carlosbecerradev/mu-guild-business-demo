@@ -3,6 +3,9 @@
     <div class="fixed inset-0 bg-gray-50">
       <div class="content">
         <button
+          @click="
+            toggleMUServerModal()
+          "
           class="exit absolute right-0 top-0 w-10 h-10"
         >
           <svg
@@ -23,3 +26,13 @@
     </div>
   </div>
 </template>
+
+<script>
+import { mapActions } from "vuex";
+
+export default {
+  methods: {
+    ...mapActions(["toggleMUServerModal"]),
+  },
+};
+</script>
