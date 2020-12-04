@@ -81,7 +81,8 @@
                             toggleMUServerModal({
                               name: 'order',
                               action: 'finish',
-                            })
+                            });
+                            setOrderId(order.id);
                           "
                           class="rounded cursor-pointer hover:bg-green-100 text-green-800"
                           >Finish</a
@@ -91,7 +92,8 @@
                             toggleMUServerModal({
                               name: 'order',
                               action: 'edit',
-                            })
+                            });
+                            setOrderId(order.id);
                           "
                           class="rounded cursor-pointer hover:bg-yellow-100 text-yellow-800"
                           >Edit</a
@@ -101,7 +103,8 @@
                             toggleMUServerModal({
                               name: 'order',
                               action: 'delete',
-                            })
+                            });
+                            setOrderId(order.id);
                           "
                           class="rounded cursor-pointer hover:bg-red-100 text-red-800"
                           >Delete</a
@@ -131,6 +134,7 @@ export default {
     ...mapActions([
       "fetchMUServerOrdersByMuServerIdAndUserAccountLoggedIn",
       "toggleMUServerModal",
+      "setOrderId",
     ]),
     useTimeAgo,
   },

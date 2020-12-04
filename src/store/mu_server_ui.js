@@ -10,6 +10,7 @@ const state = {
     },
     currentName: null,
     currentAction: null,
+    order_id: 0,
     state: false,
   },
 }
@@ -24,7 +25,10 @@ const actions = {
   toggleMUServerModal({ commit }, { name, action }) {
     commit('toggle_mu_server_modal')
     commit('change_mu_server_modal_name_and_action', { name, action })
-  }
+  },
+  setOrderId({ commit }, id) {
+    commit('receive_order_id', id)
+  },
 }
 
 const mutations = {
@@ -41,7 +45,10 @@ const mutations = {
     state.mu_server_modal.currentName = name
     state.mu_server_modal.currentAction = action
     state.mu_server_modal[name][action] = !state.mu_server_modal[name][action]
-  }
+  },
+  receive_order_id(state, order_id) {
+    state.mu_server_modal.order_id = order_id
+  },
 }
 
 const getters = {
