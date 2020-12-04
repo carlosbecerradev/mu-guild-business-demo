@@ -25,9 +25,7 @@
             />
           </svg>
         </button>
-        <MUServerNewOrder
-          v-if="getMUServerModal.order.new"
-        ></MUServerNewOrder>
+        <MUServerOrderNew v-if="getMUServerModal.order.new"></MUServerOrderNew>
       </div>
     </div>
   </div>
@@ -35,7 +33,7 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import MUServerNewOrder from "@/components/mu-server/MUServerNewOrder";
+import MUServerOrderNew from "@/components/mu-server/MUServerOrderNew";
 
 export default {
   computed: {
@@ -45,7 +43,7 @@ export default {
     ...mapActions(["toggleMUServerModal"]),
   },
   components: {
-    MUServerNewOrder,
+    MUServerOrderNew,
   },
 };
 </script>
