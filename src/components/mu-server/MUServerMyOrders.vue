@@ -77,18 +77,33 @@
                     >
                       <div class="flex flex-col text-center gap-1">
                         <a
-                          href="#"
-                          class="rounded hover:bg-green-100 text-green-800"
+                          @click="
+                            toggleMUServerModal({
+                              name: 'order',
+                              action: 'finish',
+                            })
+                          "
+                          class="rounded cursor-pointer hover:bg-green-100 text-green-800"
                           >Finish</a
                         >
                         <a
-                          href="#"
-                          class="rounded hover:bg-yellow-100 text-yellow-800"
+                          @click="
+                            toggleMUServerModal({
+                              name: 'order',
+                              action: 'edit',
+                            })
+                          "
+                          class="rounded cursor-pointer hover:bg-yellow-100 text-yellow-800"
                           >Edit</a
                         >
                         <a
-                          href="#"
-                          class="rounded hover:bg-red-100 text-red-800"
+                          @click="
+                            toggleMUServerModal({
+                              name: 'order',
+                              action: 'delete',
+                            })
+                          "
+                          class="rounded cursor-pointer hover:bg-red-100 text-red-800"
                           >Delete</a
                         >
                       </div>
@@ -113,7 +128,10 @@ export default {
     ...mapGetters(["getMyMUServerOrders", "getNickname"]),
   },
   methods: {
-    ...mapActions(["fetchMUServerOrdersByMuServerIdAndUserAccountLoggedIn"]),
+    ...mapActions([
+      "fetchMUServerOrdersByMuServerIdAndUserAccountLoggedIn",
+      "toggleMUServerModal",
+    ]),
     useTimeAgo,
   },
   created() {

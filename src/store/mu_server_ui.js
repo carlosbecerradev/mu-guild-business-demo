@@ -4,6 +4,9 @@ const state = {
   mu_server_modal: {
     order: {
       new: false,
+      finish: false,
+      edit: false,
+      delete: false,
     },
     currentName: null,
     currentAction: null,

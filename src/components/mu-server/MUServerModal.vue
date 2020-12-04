@@ -26,6 +26,9 @@
           </svg>
         </button>
         <MUServerOrderNew v-if="getMUServerModal.order.new"></MUServerOrderNew>
+        <MUServerOrderFinish v-if="getMUServerModal.order.finish"></MUServerOrderFinish>
+        <MUServerOrderEdit v-if="getMUServerModal.order.edit"></MUServerOrderEdit>
+        <MUServerOrderDelete v-if="getMUServerModal.order.delete"></MUServerOrderDelete>
       </div>
     </div>
   </div>
@@ -34,6 +37,9 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import MUServerOrderNew from "@/components/mu-server/MUServerOrderNew";
+import MUServerOrderFinish from "@/components/mu-server/MUServerOrderFinish";
+import MUServerOrderEdit from "@/components/mu-server/MUServerOrderEdit";
+import MUServerOrderDelete from "@/components/mu-server/MUServerOrderDelete";
 
 export default {
   computed: {
@@ -44,6 +50,9 @@ export default {
   },
   components: {
     MUServerOrderNew,
+    MUServerOrderFinish,
+    MUServerOrderEdit,
+    MUServerOrderDelete,
   },
 };
 </script>
