@@ -4,6 +4,8 @@ import user_accounts from './user_accounts'
 import mu_servers from './mu_servers'
 import orders from './orders'
 import order_history from './order_history'
+import items from './items'
+import item_options from './item_options'
 // ui helpers
 import mu_server_ui from './mu_server_ui'
 
@@ -22,5 +24,7 @@ export default new Vuex.Store({
     mu_server_ui,
     orders,
     order_history,
+    items,
+    item_options,
   }
 })

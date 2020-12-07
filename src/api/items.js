@@ -8,6 +8,9 @@ class Item {
 }
 
 export default {
+  getAll() {
+    return _items
+  },
 }
 
 const _items = [

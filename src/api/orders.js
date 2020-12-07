@@ -1,3 +1,6 @@
+import user_account_api from './user_accounts'
+import mu_servers_api from './mu_servers'
+
 class Order {
   constructor(id, item, item_level, item_options, observation, user_account, mu_server, state, created) {
     this.id = id
@@ -18,6 +21,15 @@ export default {
   },
   getAllByMUServerIdAndUserAccountNicknameAndStateTrue(mu_server_id, user_account_nickname) {
     return _orders.filter(order => order.mu_server.id == mu_server_id && order.user_account.nickname == user_account_nickname && order.state == true)
+  },
+  save(order) {
+    const newOrder = new Order(this.getNewId(), order.item, order.itemLevel, order.itemOptions, order.observation, user_account_api.getDtoByUsername(order.nickname), mu_servers_api.getDtoById(order.muServerId), true, Date.now())
+    console.log('api order save', order)
+    console.log('api newOrder save', newOrder)
+    _orders.push(newOrder)
+  },
+  getNewId() {
+    return (_orders[_orders.length - 1].id + 1)
   },
 }
 

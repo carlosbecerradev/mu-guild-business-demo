@@ -7,6 +7,9 @@ class ItemOption {
 }
 
 export default {
+  getAll() {
+    return _item_options
+  },
 }
 
 const _item_options = [

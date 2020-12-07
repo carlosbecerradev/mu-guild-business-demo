@@ -29,6 +29,9 @@ const actions = {
   setOrderId({ commit }, id) {
     commit('receive_order_id', id)
   },
+  resetModal({ commit }) {
+    commit('RESET_MU_SERVER_MODAL')
+  },
 }
 
 const mutations = {
@@ -48,6 +51,20 @@ const mutations = {
   },
   receive_order_id(state, order_id) {
     state.mu_server_modal.order_id = order_id
+  },
+  RESET_MU_SERVER_MODAL(state) {
+    state.mu_server_modal = {
+      order: {
+        new: false,
+        finish: false,
+        edit: false,
+        delete: false,
+      },
+      currentName: null,
+      currentAction: null,
+      order_id: 0,
+      state: false,
+    }
   },
 }
 

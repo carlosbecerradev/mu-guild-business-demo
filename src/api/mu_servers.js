@@ -19,6 +19,9 @@ export default {
     setTimeout(() => cb(mu_server), 100)
     // console.log('mu_server_api', mu_server)
   },
+  getDtoById(id) {
+    return _mu_servers_dto.find(mu_server => mu_server.id == id)
+  },
 }
 const _mu_servers = [
   { "id": 1, "name": "MU PVP", "version": "99b + S2", "website": "https://muonlinepvp.net", "coins": "WCoins", "state": true, "created": Date.now() },

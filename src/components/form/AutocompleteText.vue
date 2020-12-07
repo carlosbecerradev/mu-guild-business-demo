@@ -7,12 +7,12 @@
       autocomplete="off"
       :placeholder="placeholder"
       :required="isRequired"
-      class="lg:mt-1 block w-full py-1 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+      class="mt-1 block w-full py-1 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm"
     />
 
     <div
       v-if="filteredList != []"
-      class="absolute top-full w-full rounded max-h-32 overflow-y-auto shadow"
+      class="absolute bg-white top-full w-full rounded max-h-32 overflow-y-auto shadow"
     >
       <div
         @click="selectItem(item)"
