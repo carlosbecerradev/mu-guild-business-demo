@@ -7,7 +7,6 @@
         <h2 class="mt-6 text-center text-3xl font-bold text-gray-900">
           New Order
         </h2>
-        {{ order }}
       </div>
       <span class="sr-only">order form</span>
       <form @submit.prevent="newOrder(order)">
@@ -50,11 +49,11 @@
                   class="mt-1 block w-full py-1 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm"
                 >
                   <option
-                    :value="object"
-                    v-for="object in getItemOptionsList"
-                    :key="object.id"
+                    :value="itemOptions"
+                    v-for="itemOptions in getItemOptionsList"
+                    :key="itemOptions.id"
                   >
-                    {{ object.name }}
+                    {{ itemOptions.name }}
                   </option>
                 </select>
               </div>

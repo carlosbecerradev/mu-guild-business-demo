@@ -24,8 +24,6 @@ export default {
   },
   save(order) {
     const newOrder = new Order(this.getNewId(), order.item, order.itemLevel, order.itemOptions, order.observation, user_account_api.getDtoByUsername(order.nickname), mu_servers_api.getDtoById(order.muServerId), true, Date.now())
-    console.log('api order save', order)
-    console.log('api newOrder save', newOrder)
     _orders.push(newOrder)
   },
   getNewId() {

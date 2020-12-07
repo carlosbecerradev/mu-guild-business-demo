@@ -1,4 +1,4 @@
-import item_options__api from '@/api/item_options'
+import item_options_api from '@/api/item_options'
 
 const state = {
   item_options_list: [],
@@ -7,8 +7,8 @@ const state = {
 
 const actions = {
   fetchAllItemOptions({ commit }) {
-    commit('RECEIVE_ITEMS_OPTIONS', item_options__api.getAll())
-  }
+    commit('RECEIVE_ITEMS_OPTIONS', item_options_api.getAll())
+  },
 }
 
 const mutations = {

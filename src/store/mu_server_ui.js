@@ -29,7 +29,7 @@ const actions = {
   setOrderId({ commit }, id) {
     commit('receive_order_id', id)
   },
-  resetModal({ commit }) {
+  resetMUServerModal({ commit }) {
     commit('RESET_MU_SERVER_MODAL')
   },
 }
@@ -77,7 +77,7 @@ const getters = {
   },
   getMUServerModal(state) {
     return state.mu_server_modal
-  }
+  },
 }
 
 export default {
