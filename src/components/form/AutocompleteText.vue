@@ -56,6 +56,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    defaultValue: {
+      type: Object,
+      required: false,
+    },
   },
   methods: {
     search() {
@@ -85,6 +89,11 @@ export default {
     clearFilteredList() {
       this.filteredList = [];
     },
+  },
+  created() {
+    if(this.defaultValue != null){
+      this.selectItem(this.defaultValue)
+    }
   },
 };
 </script>
