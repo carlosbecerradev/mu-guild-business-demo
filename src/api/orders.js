@@ -29,6 +29,17 @@ export default {
   getNewId() {
     return (_orders[_orders.length - 1].id + 1)
   },
+  getById(id) {
+    return _orders.find(order => order.id == id)
+  },
+  edit(order) {
+    let _order = new Order
+    _order = this.getById(order.id)
+    _order.item = order.item
+    _order.item_level = order.itemLevel
+    _order.item_options = order.itemOptions
+    _order.observation = order.observation
+  },
 }
 
 const _orders = [

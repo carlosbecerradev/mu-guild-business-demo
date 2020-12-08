@@ -3,6 +3,7 @@ import orders_api from '@/api/orders'
 const state = {
   mu_server_orders: [],
   my_mu_server_orders: [],
+  current_order: {},
 }
 
 const actions = {
@@ -20,6 +21,16 @@ const actions = {
     this.dispatch('fetchMUServerOrdersByMuServerId', order.muServerId)
     this.dispatch('fetchMUServerOrdersByMuServerIdAndUserAccountLoggedIn', { mu_server_id: order.muServerId, user_account_nickname: order.nickname })
   },
+  fetchOrder({ commit }, order_id) {
+    commit('RECEIVE_ORDER', orders_api.getById(order_id))
+  },
+  editOrder({ getters }, order) {
+    order.id = getters['getCurrentOrder'].id
+    orders_api.edit(order)
+    this.dispatch('resetMUServerModal')
+    this.dispatch('fetchMUServerOrdersByMuServerId', getters['getCurrentMUServer'].id)
+    this.dispatch('fetchMUServerOrdersByMuServerIdAndUserAccountLoggedIn', { mu_server_id: getters['getCurrentMUServer'].id, user_account_nickname: getters['getNickname'] })
+  },
 }
 
 const mutations = {
@@ -28,6 +39,9 @@ const mutations = {
   },
   receive_my_mu_server_orders(state, my_mu_server_orders) {
     state.my_mu_server_orders = my_mu_server_orders
+  },
+  RECEIVE_ORDER(state, order) {
+    state.current_order = order
   },
 }
 
@@ -38,6 +52,7 @@ const getters = {
   getMyMUServerOrders(state) {
     return state.my_mu_server_orders
   },
+  getCurrentOrder: state => state.current_order,
 }
 
 export default {
