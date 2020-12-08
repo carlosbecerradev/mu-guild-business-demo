@@ -23,7 +23,7 @@ export default {
     return _orders.filter(order => order.mu_server.id == mu_server_id && order.user_account.nickname == user_account_nickname && order.state == true).sort((a,b)=> a-b)
   },
   save(order) {
-    const newOrder = new Order(this.getNewId(), order.item, order.itemLevel, order.itemOptions, order.observation, user_account_api.getDtoByUsername(order.nickname), mu_servers_api.getDtoById(order.muServerId), true, Date.now())
+    const newOrder = new Order(this.getNewId(), order.item, order.itemLevel, order.itemOptions, order.observation, user_account_api.getDtoByNickname(order.nickname), mu_servers_api.getDtoById(order.muServerId), true, Date.now())
     _orders.push(newOrder)
   },
   getNewId() {

@@ -18,7 +18,7 @@ export default {
   getByUsername(username) {
     return _user_accounts.find(user_account => user_account.username == username)
   },
-  getDtoByUsername(nickname) {
+  getDtoByNickname(nickname) {
     return _user_accounts_dto.find(user_account => user_account.nickname == nickname)
   },
 }
