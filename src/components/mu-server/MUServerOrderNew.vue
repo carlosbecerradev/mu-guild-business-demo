@@ -1,5 +1,5 @@
 <template>
-  <div class="new-order flex items-center justify-center py-12 sm:px-6 lg:px-8">
+  <div class="min-h-screen flex items-center justify-center py-12 sm:px-6 lg:px-8">
     <div
       class="max-w-md w-full space-y-8 p-4 bg-white md:px-8 rounded-md shadow"
     >
