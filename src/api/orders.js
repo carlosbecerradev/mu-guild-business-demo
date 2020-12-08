@@ -40,6 +40,9 @@ export default {
     _order.item_options = order.itemOptions
     _order.observation = order.observation
   },
+  delete(order_id) {
+    _orders.splice(_orders.findIndex(order => order.id == order_id), 1)
+  },
 }
 
 const _orders = [

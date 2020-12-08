@@ -31,6 +31,13 @@ const actions = {
     this.dispatch('fetchMUServerOrdersByMuServerId', getters['getCurrentMUServer'].id)
     this.dispatch('fetchMUServerOrdersByMuServerIdAndUserAccountLoggedIn', { mu_server_id: getters['getCurrentMUServer'].id, user_account_nickname: getters['getNickname'] })
   },
+  deleteOrder({ getters }) {
+    let order_id = getters['getCurrentOrder'].id
+    orders_api.delete(order_id)
+    this.dispatch('resetMUServerModal')
+    this.dispatch('fetchMUServerOrdersByMuServerId', getters['getCurrentMUServer'].id)
+    this.dispatch('fetchMUServerOrdersByMuServerIdAndUserAccountLoggedIn', { mu_server_id: getters['getCurrentMUServer'].id, user_account_nickname: getters['getNickname'] })
+  },
 }
 
 const mutations = {
