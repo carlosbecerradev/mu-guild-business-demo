@@ -17,9 +17,7 @@ const actions = {
     order.nickname = getters['getNickname']
     order.muServerId = getters['getCurrentMUServer'].id
     orders_api.save(order)
-    this.dispatch('resetMUServerModal')
-    this.dispatch('fetchMUServerOrdersByMuServerId', order.muServerId)
-    this.dispatch('fetchMUServerOrdersByMuServerIdAndUserAccountLoggedIn', { mu_server_id: order.muServerId, user_account_nickname: order.nickname })
+    this.dispatch('refreshMUServerView')
   },
   fetchOrder({ commit }, order_id) {
     commit('RECEIVE_ORDER', orders_api.getById(order_id))
@@ -27,16 +25,12 @@ const actions = {
   editOrder({ getters }, order) {
     order.id = getters['getCurrentOrder'].id
     orders_api.edit(order)
-    this.dispatch('resetMUServerModal')
-    this.dispatch('fetchMUServerOrdersByMuServerId', getters['getCurrentMUServer'].id)
-    this.dispatch('fetchMUServerOrdersByMuServerIdAndUserAccountLoggedIn', { mu_server_id: getters['getCurrentMUServer'].id, user_account_nickname: getters['getNickname'] })
+    this.dispatch('refreshMUServerView')
   },
   deleteOrder({ getters }) {
     let order_id = getters['getCurrentOrder'].id
     orders_api.delete(order_id)
-    this.dispatch('resetMUServerModal')
-    this.dispatch('fetchMUServerOrdersByMuServerId', getters['getCurrentMUServer'].id)
-    this.dispatch('fetchMUServerOrdersByMuServerIdAndUserAccountLoggedIn', { mu_server_id: getters['getCurrentMUServer'].id, user_account_nickname: getters['getNickname'] })
+    this.dispatch('refreshMUServerView')
   },
 }
 

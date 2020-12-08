@@ -32,6 +32,11 @@ const actions = {
   resetMUServerModal({ commit }) {
     commit('RESET_MU_SERVER_MODAL')
   },
+  refreshMUServerView({ getters }) {
+    this.dispatch('resetMUServerModal')
+    this.dispatch('fetchMUServerOrdersByMuServerId', getters['getCurrentMUServer'].id)
+    this.dispatch('fetchMUServerOrdersByMuServerIdAndUserAccountLoggedIn', { mu_server_id: getters['getCurrentMUServer'].id, user_account_nickname: getters['getNickname'] })
+  },
 }
 
 const mutations = {
