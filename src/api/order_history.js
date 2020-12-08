@@ -1,8 +1,11 @@
+import user_account_api from './user_accounts'
+import orders from './orders'
+
 class OrderHistory {
   constructor(id, order, guild_mate, price, observation, created) {
     this.id = id
     this.order = order
-    this.guilguild_mate = guild_mate
+    this.guild_mate = guild_mate
     this.price = price
     this.observation = observation
     this.created = created
@@ -12,6 +15,14 @@ class OrderHistory {
 export default {
   getAllByMUServerIdAndUserAccountNickname(mu_server_id, user_account_nickname) {
     return _order_history.filter(order_history_item => order_history_item.order.mu_server.id == mu_server_id && order_history_item.order.user_account.nickname == user_account_nickname)
+  },
+  save(finishOrder) {
+    const newFinishOrder = new OrderHistory(this.getNewId(), finishOrder.order, user_account_api.getDtoByNickname(finishOrder.guildMate), finishOrder.price, finishOrder.observation, Date.now())
+    orders.finishOrder(finishOrder.order.id)
+    _order_history.push(newFinishOrder)
+  },
+  getNewId() {
+    return (_order_history[_order_history.length - 1].id + 1)
   },
 }
 

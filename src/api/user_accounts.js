@@ -21,6 +21,9 @@ export default {
   getDtoByNickname(nickname) {
     return _user_accounts_dto.find(user_account => user_account.nickname == nickname)
   },
+  getAllDto() {
+    return _user_accounts_dto
+  },
 }
 
 const _user_accounts = [

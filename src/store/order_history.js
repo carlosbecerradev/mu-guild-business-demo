@@ -7,7 +7,12 @@ const state = {
 const actions = {
   fetchMyMUServerOrderHistoryByMuServerIdAndUserAccountLoggedIn({ commit }, { mu_server_id, user_account_nickname }) {
     commit('receive_my_mu_server_order_history', order_history_api.getAllByMUServerIdAndUserAccountNickname(mu_server_id, user_account_nickname))
-  }
+  },
+  finishOrder({ getters }, orderHistoryItem) {
+    orderHistoryItem.order = getters['getCurrentOrder']
+    order_history_api.save(orderHistoryItem)
+    this.dispatch('refreshMUServerView')
+  },
 }
 
 const mutations = {

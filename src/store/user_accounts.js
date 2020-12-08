@@ -5,6 +5,7 @@ const state = {
   all: [],
   username: null,
   nickname: null,
+  allUserAccountsDto: [],
 }
 
 const actions = {
@@ -36,7 +37,10 @@ const actions = {
       commit('set_username', username)
       commit('set_nickname', user_accounts_api.getByUsername(username).nickname)
     }
-  }
+  },
+  fetchAllUserAccountsDto({ commit }) {
+    commit('RECEIVE_USER_ACCOUNTS_DTO', user_accounts_api.getAllDto())
+  },
 }
 
 const mutations = {
@@ -48,6 +52,9 @@ const mutations = {
   },
   set_nickname(state, nickname) {
     state.nickname = nickname
+  },
+  RECEIVE_USER_ACCOUNTS_DTO(state, allDto) {
+    state.allUserAccountsDto = allDto
   },
 }
 
@@ -61,6 +68,7 @@ const getters = {
   getNickname(state) {
     return state.nickname
   },
+  getAllUserAccountsDto: state => state.allUserAccountsDto,
 }
 
 export default {
