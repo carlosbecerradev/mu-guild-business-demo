@@ -1,5 +1,7 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center py-12 sm:px-6 lg:px-8">
+  <div
+    class="min-h-screen flex items-center justify-center py-12 sm:px-6 lg:px-8"
+  >
     <div
       class="max-w-md w-full space-y-8 p-4 bg-white md:px-8 rounded-md shadow"
     >
@@ -71,12 +73,22 @@
                 </textarea>
               </div>
 
-              <div class="col-span-6">
+              <div class="col-span-6 sm:col-span-3">
                 <button
                   type="submit"
                   class="flex w-full justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                   Confirm
+                </button>
+              </div>
+
+              <div class="col-span-6 sm:col-span-3">
+                <button
+                  @click="resetMUServerModal"
+                  type="submit"
+                  class="flex w-full justify-center py-2 px-4 shadow-sm text-sm font-medium rounded-md text-indigo-600 hover:text-indigo-500 border border-transparent hover:border-indigo-600"
+                >
+                  Cancel
                 </button>
               </div>
             </div>
@@ -106,7 +118,12 @@ export default {
     ...mapGetters(["getItems", "getItemOptionsList"]),
   },
   methods: {
-    ...mapActions(["fetchItems", "fetchAllItemOptions", "newOrder"]),
+    ...mapActions([
+      "fetchItems",
+      "fetchAllItemOptions",
+      "newOrder",
+      "resetMUServerModal",
+    ]),
   },
   created() {
     this.fetchItems();
