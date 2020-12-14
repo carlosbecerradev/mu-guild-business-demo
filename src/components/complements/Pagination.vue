@@ -1,6 +1,17 @@
 <template>
   <div class="flex justify-center items-center">
     <div
+      @click="previousPage()"
+      class="mx-1 px-2 py-1 rounded text-sm bg-white hover:bg-indigo-600 hover:text-white shadow-md cursor-pointer"
+    >
+      <span class="sr-only">previous</span>
+      <svg
+        class="h-5 w-5"
+        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 19l-7-7 7-7" />
+      </svg>
+    </div>
+    <div
       @click="changePage(element.index)"
       class="mx-1 px-2 py-1 rounded text-sm bg-white shadow-md cursor-pointer"
       :class="element.active ? 'bg-indigo-600 text-white' : 'bg-white text-black'"
@@ -8,6 +19,17 @@
       :key="element.index"
     >
       {{ element.page }}
+    </div>
+    <div
+      @click="nextPage()"
+      class="mx-1 px-2 py-1 rounded text-sm bg-white hover:bg-indigo-600 hover:text-white shadow-md cursor-pointer"
+    >
+      <span class="sr-only">next</span>
+      <svg
+        class="h-5 w-5"
+        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 5l7 7-7 7" />
+      </svg>
     </div>
   </div>
 </template>
@@ -116,6 +138,28 @@ export default {
       );
       this.createPaginator(this.pageable);
       this.$emit("pageElements", this.pageable.elements);
+    },
+    nextPage() {
+      if(this.pageable.currentPage <= this.pageable.totalPages-2) {
+        this.createPageable(
+          this.list,
+          this.pageable.currentPage+1,
+          this.elementsPerPage
+        );
+        this.createPaginator(this.pageable);
+        this.$emit("pageElements", this.pageable.elements);
+      }
+    },
+    previousPage() {
+      if(this.pageable.currentPage >= 1) {
+        this.createPageable(
+          this.list,
+          this.pageable.currentPage-1,
+          this.elementsPerPage
+        );
+        this.createPaginator(this.pageable);
+        this.$emit("pageElements", this.pageable.elements);
+      }
     },
   },
   created() {
