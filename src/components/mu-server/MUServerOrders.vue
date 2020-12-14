@@ -6,7 +6,6 @@
       >
         Results
       </h3>
-
       <!-- This example requires Tailwind CSS v2.0+ -->
       <div v-if="getMUServerOrders != []" class="flex flex-col">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -39,7 +38,7 @@
                 </thead>
 
                 <tbody class="bg-white divide-y divide-gray-200">
-                  <tr v-for="order in getMUServerOrders" :key="order.id">
+                  <tr v-for="order in data" :key="order.id">
                     <td class="px-6 py-4 whitespace-nowrap">
                       <div class="flex items-center">
                         <div class="">
@@ -72,6 +71,13 @@
             </div>
           </div>
         </div>
+        <div class="pt-2 pb-5">
+          <pagination
+            :list="getMUServerOrders"
+            :elementsPerPage="8"
+            @pageElements="data = $event"
+          ></pagination>
+        </div>
       </div>
     </section>
   </div>
@@ -80,8 +86,15 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import useTimeAgo from "@/helpers/time_ago";
+import Pagination from "../complements/Pagination.vue";
 
 export default {
+  data() {
+    return {
+      data: null,
+    };
+  },
+  components: { Pagination },
   computed: {
     ...mapGetters(["getMUServerOrders"]),
   },
