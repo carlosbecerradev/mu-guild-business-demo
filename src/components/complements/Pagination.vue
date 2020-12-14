@@ -7,14 +7,25 @@
       <span class="sr-only">previous</span>
       <svg
         class="h-5 w-5"
-        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 19l-7-7 7-7" />
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1"
+          d="M15 19l-7-7 7-7"
+        />
       </svg>
     </div>
     <div
       @click="changePage(element.index)"
       class="mx-1 px-2 py-1 rounded text-sm bg-white shadow-md cursor-pointer"
-      :class="element.active ? 'bg-indigo-600 text-white' : 'bg-white text-black'"
+      :class="
+        element.active ? 'bg-indigo-600 text-white' : 'bg-white text-black'
+      "
       v-for="element in paginator"
       :key="element.index"
     >
@@ -27,8 +38,17 @@
       <span class="sr-only">next</span>
       <svg
         class="h-5 w-5"
-        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 5l7 7-7 7" />
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1"
+          d="M9 5l7 7-7 7"
+        />
       </svg>
     </div>
   </div>
@@ -107,7 +127,10 @@ export default {
         });
       }
 
-      if (pageable.totalPages > pageable.elementsPerPage && pageable.totalPages != 1) {
+      if (
+        pageable.totalPages > pageable.elementsPerPage &&
+        pageable.totalPages != 1
+      ) {
         if (paginator.some((object) => object.index == 0)) {
           paginator.push({
             index: pageable.totalPages - 1,
@@ -131,19 +154,15 @@ export default {
       this.paginator = paginator;
     },
     changePage(indexPage) {
-      this.createPageable(
-        this.list,
-        indexPage,
-        this.elementsPerPage
-      );
+      this.createPageable(this.list, indexPage, this.elementsPerPage);
       this.createPaginator(this.pageable);
       this.$emit("pageElements", this.pageable.elements);
     },
     nextPage() {
-      if(this.pageable.currentPage <= this.pageable.totalPages-2) {
+      if (this.pageable.currentPage <= this.pageable.totalPages - 2) {
         this.createPageable(
           this.list,
-          this.pageable.currentPage+1,
+          this.pageable.currentPage + 1,
           this.elementsPerPage
         );
         this.createPaginator(this.pageable);
@@ -151,10 +170,10 @@ export default {
       }
     },
     previousPage() {
-      if(this.pageable.currentPage >= 1) {
+      if (this.pageable.currentPage >= 1) {
         this.createPageable(
           this.list,
-          this.pageable.currentPage-1,
+          this.pageable.currentPage - 1,
           this.elementsPerPage
         );
         this.createPaginator(this.pageable);
@@ -165,7 +184,7 @@ export default {
   created() {
     this.createPageable(this.list, 0, this.elementsPerPage);
     this.createPaginator(this.pageable);
-    this.changePage(0)
+    this.changePage(0);
     // console.log(this.pageable)
     // console.log(this.paginator)
   },
