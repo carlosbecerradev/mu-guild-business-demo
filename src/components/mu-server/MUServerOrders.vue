@@ -38,7 +38,7 @@
                 </thead>
 
                 <tbody class="bg-white divide-y divide-gray-200">
-                  <tr v-for="order in data" :key="order.id">
+                  <tr v-for="order in page" :key="order.id">
                     <td class="px-6 py-4 whitespace-nowrap">
                       <div class="flex items-center">
                         <div class="">
@@ -73,10 +73,12 @@
         </div>
         <div class="pt-2 pb-5">
           <pagination
-            :list="getMUServerOrders"
-            :elementsPerPage="8"
-            @pageElements="data = $event"
-          ></pagination>
+            :totalElements="data.length"
+            :currentPage="currentPage"
+            :elementsPerPage="elementsPerPage"
+            @page:update="updatePage"
+          >
+          </pagination>
         </div>
       </div>
     </section>
@@ -91,7 +93,10 @@ import Pagination from "../complements/Pagination.vue";
 export default {
   data() {
     return {
-      data: null,
+      data: [],
+      currentPage: 0,
+      elementsPerPage: 5,
+      page: [],
     };
   },
   components: { Pagination },
@@ -101,9 +106,31 @@ export default {
   methods: {
     ...mapActions(["fetchMUServerOrdersByMuServerId"]),
     useTimeAgo,
+    updatePage(pageNumber) {
+      this.currentPage = pageNumber;
+      this.createPage();
+    },
+    createPage() {
+      this.page = this.data.slice(
+        this.currentPage * this.elementsPerPage,
+        this.currentPage * this.elementsPerPage + this.elementsPerPage
+      );
+
+      // if we have 0 visible todos, go back a page
+      if (this.page.length == 0 && this.currentPage > 0) {
+        this.updatePage(this.currentPage - 1);
+      }
+    },
+    updateData(data) {
+      this.data = data;
+    },
+  },
+  beforeMount() {
+    this.createPage();
   },
   created() {
     this.fetchMUServerOrdersByMuServerId(this.$route.params.id);
+    this.updateData(this.getMUServerOrders);
   },
 };
 </script>
