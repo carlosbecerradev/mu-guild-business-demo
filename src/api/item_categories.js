@@ -7,6 +7,9 @@ class ItemCategory {
 }
 
 export default {
+  getAll() {
+    return _item_categories.filter(item_category => item_category.state == true)
+  },
 }
 
 const _item_categories = [

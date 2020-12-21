@@ -6,6 +6,7 @@ import orders from './orders'
 import order_history from './order_history'
 import items from './items'
 import item_options from './item_options'
+import item_categories from './item_categories'
 // ui helpers
 import mu_server_ui from './mu_server_ui'
 
@@ -26,5 +27,6 @@ export default new Vuex.Store({
     order_history,
     items,
     item_options,
+    item_categories,
   }
 })
