@@ -89,10 +89,15 @@ export default {
     clearFilteredList() {
       this.filteredList = [];
     },
+    reset() {
+      this.text = "";
+      filteredList = [];
+      selected = {};
+    },
   },
   created() {
-    if(this.defaultValue != null){
-      this.selectItem(this.defaultValue)
+    if (this.defaultValue != null) {
+      this.selectItem(this.defaultValue);
     }
   },
 };
