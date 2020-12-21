@@ -60,13 +60,26 @@
 <script>
 export default {
   name: "pagination",
-  props: ["todos", "currentPage", "pageSize"],
+  props: {
+    totalElements: {
+      type: Number,
+      required: true,
+    },
+    currentPage: {
+      type: Number,
+      required: true,
+    },
+    elementsPerPage: {
+      type: Number,
+      required: true,
+    },
+  },
   methods: {
     updatePage(pageNumber) {
       this.$emit("page:update", pageNumber);
     },
     totalPages() {
-      return Math.ceil(this.todos.length / this.pageSize);
+      return Math.ceil(this.totalElements / this.elementsPerPage);
     },
     showPreviousLink() {
       return this.currentPage == 0 ? false : true;
@@ -78,22 +91,22 @@ export default {
       let paginator = [];
       let desde, hasta;
 
-      if (this.totalPages() <= this.pageSize) {
+      if (this.totalPages() <= this.elementsPerPage) {
         desde = 1;
         hasta = this.totalPages();
       } else {
-        if (this.currentPage <= Math.floor(this.pageSize / 2)) {
+        if (this.currentPage <= Math.floor(this.elementsPerPage / 2)) {
           desde = 1;
-          hasta = this.pageSize;
+          hasta = this.elementsPerPage;
         } else if (
           this.currentPage >=
-          this.totalPages() - Math.floor(this.pageSize / 2)
+          this.totalPages() - Math.floor(this.elementsPerPage / 2)
         ) {
-          desde = this.totalPages() - this.pageSize + 1;
-          hasta = pageable.elementsPerPage;
+          desde = this.totalPages() - this.elementsPerPage + 1;
+          hasta = this.elementsPerPage;
         } else {
-          desde = this.currentPage - Math.floor(this.pageSize / 2);
-          hasta = this.pageSize;
+          desde = this.currentPage - Math.floor(this.elementsPerPage / 2);
+          hasta = this.elementsPerPage;
         }
       }
 
@@ -104,7 +117,7 @@ export default {
         });
       }
 
-      if (this.totalPages() > this.pageSize && this.totalPages() != 1) {
+      if (this.totalPages() > this.elementsPerPage && this.totalPages() != 1) {
         if (paginator.some((object) => object.index == 0)) {
           paginator.push({
             index: this.totalPages() - 1,
