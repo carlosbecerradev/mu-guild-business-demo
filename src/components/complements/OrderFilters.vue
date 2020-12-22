@@ -2,18 +2,18 @@
   <div class="">
     <div class="grid grid-cols-6 gap-y-2 gap-x-6 items-end">
       <div class="col-span-6 sm:col-span-2">
-        <span>Iten name</span>
+        <span class="text-sm text-gray-600">By Item name</span>
         <autocomplete-text
           :objectList="getItems"
           :objectProperty="'name'"
-          :placeholder="'Item name'"
+          :placeholder="'Red Dragon Set'"
           :filterMethod="'includes'"
           @selected="filterDataByItemName($event.name)"
           ref="autocompleteTextComponent"
         ></autocomplete-text>
       </div>
       <div class="col-span-6 sm:col-span-2">
-        <span>Iten category</span>
+        <span class="text-sm text-gray-600">By Item category</span>
         <select
           v-model="itemCategoryName"
           @change="filterDataByItemCategoryName(itemCategoryName)"
