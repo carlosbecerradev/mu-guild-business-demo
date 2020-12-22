@@ -48,7 +48,6 @@ export default {
   data() {
     return {
       filteredOrders: [],
-      itemName: "",
       itemCategoryName: "",
     };
   },
@@ -69,12 +68,16 @@ export default {
         (order) => order.item.name == itemName
       );
       this.resetItemCategorySelect();
+      this.$emit("page:data", this.filteredOrders);
+      this.$emit("page:update", 0);
     },
     filterDataByItemCategoryName(itemCategoryName) {
       this.filteredOrders = this.orders.filter(
         (order) => order.item.item_category.name == itemCategoryName
       );
       this.resetAutocompleteText();
+      this.$emit("page:data", this.filteredOrders);
+      this.$emit("page:update", 0);
     },
     reset() {
       this.resetAutocompleteText();
@@ -84,7 +87,6 @@ export default {
       this.$emit("page:update", 0);
     },
     resetAutocompleteText() {
-      this.itemName = "";
       this.$refs.autocompleteTextComponent.reset();
     },
     resetItemCategorySelect() {
@@ -94,10 +96,6 @@ export default {
   created() {
     this.fetchItems();
     this.fetchItemCategories();
-  },
-  updated() {
-    this.$emit("page:data", this.filteredOrders);
-    this.$emit("page:update", 0);
   },
 };
 </script>
