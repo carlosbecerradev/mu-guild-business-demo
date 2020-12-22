@@ -1,5 +1,13 @@
 <template>
   <div class="mu-server-order-history">
+    <section class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+      <span class="sr-only">Filters</span>
+      <order-history-filters
+        :orderHistory="getMyMUServerOrderHistory"
+        @page:data="updateData"
+        @page:update="updatePage"
+      ></order-history-filters>
+    </section>
     <section class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 pt-2">
       <h3
         class="sr-only inline-block mb-2 text-sm leading-6 font-medium text-indigo-600 text-left py-1"
@@ -45,7 +53,7 @@
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                   <tr
-                    v-for="order_history_item in getMyMUServerOrderHistory"
+                    v-for="order_history_item in page"
                     :key="order_history_item.id"
                   >
                     <td class="px-6 py-4 whitespace-nowrap">
@@ -90,6 +98,15 @@
             </div>
           </div>
         </div>
+        <div class="pt-2 pb-5">
+          <pagination
+            :totalElements="data.length"
+            :currentPage="currentPage"
+            :elementsPerPage="elementsPerPage"
+            @page:update="updatePage"
+          >
+          </pagination>
+        </div>
       </div>
     </section>
   </div>
@@ -98,8 +115,19 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import useTimeAgo from "@/helpers/time_ago";
+import Pagination from "../complements/Pagination.vue";
+import OrderHistoryFilters from "../complements/OrderHistoryFilters";
 
 export default {
+  data() {
+    return {
+      data: [],
+      currentPage: 0,
+      elementsPerPage: 5,
+      page: [],
+    };
+  },
+  components: { Pagination, OrderHistoryFilters },
   computed: {
     ...mapGetters(["getMyMUServerOrderHistory", "getNickname"]),
   },
@@ -108,12 +136,34 @@ export default {
       "fetchMyMUServerOrderHistoryByMuServerIdAndUserAccountLoggedIn",
     ]),
     useTimeAgo,
+    updatePage(pageNumber) {
+      this.currentPage = pageNumber;
+      this.createPage();
+    },
+    createPage() {
+      this.page = this.data.slice(
+        this.currentPage * this.elementsPerPage,
+        this.currentPage * this.elementsPerPage + this.elementsPerPage
+      );
+
+      // if we have 0 visible todos, go back a page
+      if (this.page.length == 0 && this.currentPage > 0) {
+        this.updatePage(this.currentPage - 1);
+      }
+    },
+    updateData(data) {
+      this.data = data;
+    },
+  },
+  beforeMount() {
+    this.createPage();
   },
   created() {
     this.fetchMyMUServerOrderHistoryByMuServerIdAndUserAccountLoggedIn({
       mu_server_id: this.$route.params.id,
       user_account_nickname: this.getNickname,
     });
+    this.updateData(this.getMyMUServerOrderHistory);
   },
 };
 </script>
