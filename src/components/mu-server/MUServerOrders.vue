@@ -1,5 +1,13 @@
 <template>
   <div class="mu-server-orders">
+    <section class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+      <span class="sr-only">Filters</span>
+      <order-filters
+        :orders="getMUServerOrders"
+        @page:data="updateData"
+        @page:update="updatePage"
+      ></order-filters>
+    </section>
     <section class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 pt-2">
       <h3
         class="sr-only inline-block mb-2 text-sm leading-6 font-medium text-indigo-600 text-left py-1"
@@ -89,6 +97,7 @@
 import { mapActions, mapGetters } from "vuex";
 import useTimeAgo from "@/helpers/time_ago";
 import Pagination from "../complements/Pagination.vue";
+import OrderFilters from "../complements/OrderFilters";
 
 export default {
   data() {
@@ -99,7 +108,7 @@ export default {
       page: [],
     };
   },
-  components: { Pagination },
+  components: { Pagination, OrderFilters },
   computed: {
     ...mapGetters(["getMUServerOrders"]),
   },
