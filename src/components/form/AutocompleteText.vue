@@ -91,8 +91,8 @@ export default {
     },
     reset() {
       this.text = "";
-      filteredList = [];
-      selected = {};
+      this.filteredList = [];
+      this.selected = {};
     },
   },
   created() {
