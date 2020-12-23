@@ -1,5 +1,5 @@
 <template>
-  <div class="mu-server-content">
+  <div class="mu-server-content pb-10">
     <div v-if="getMUServerNavigationListItemSelected == getMUServerNavigationList[0]">
       <MUServerOrders></MUServerOrders>
     </div>
