@@ -72,14 +72,43 @@
             </aside>
           </div>
           <aside class="hidden sm:block sm:col-span-3 md:col-span-2">
-            <div class="p-4 border border-gray-200">
-              <div class="some-ads">
-                <div class="h-96 w-full text-center">Some Ads</div>
+            <section class="p-4 mb-4 shadow-sm bg-white">
+              <div class="members">
+                <div
+                  class="mb-4 border-b text-center text-lg font-bold text-indigo-600"
+                >
+                  Members
+                </div>
+                <div class="max-h-80 overflow-y-auto text">
+                  <p
+                    v-for="(user, index) in getAllUserAccountsDto"
+                    :key="index"
+                    class="mb-0 py-1 text-sm"
+                  >
+                    {{ user.nickname }}
+                  </p>
+                </div>
               </div>
-            </div>
+            </section>
           </aside>
         </div>
       </div>
     </section>
   </div>
 </template>
+
+<script>
+import { mapActions, mapGetters } from "vuex";
+
+export default {
+  computed: {
+    ...mapGetters(["getAllUserAccountsDto"]),
+  },
+  methods: {
+    ...mapActions(["fetchAllUserAccountsDto"]),
+  },
+  created() {
+    this.fetchAllUserAccountsDto();
+  },
+};
+</script>
