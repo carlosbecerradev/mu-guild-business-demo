@@ -75,7 +75,13 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['login'])
+    ...mapActions(['login']),
+    ifLoggedInRedirect() {
+      localStorage.getItem('username') != null ? this.$router.push("/") : null
+    }
+  },
+  created() {
+    this.ifLoggedInRedirect()
   },
 };
 </script>
