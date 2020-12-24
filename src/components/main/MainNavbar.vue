@@ -1,9 +1,9 @@
 <template>
-  <nav class="w-full bg-gray-800 shadow-lg">
+  <nav class="w-full bg-gray-800 z-10">
     <div
       v-if="dropdown"
       @click="dropdown = !dropdown"
-      class="absolute inset-0 w-full h-full bg-black opacity-40"
+      class="fixed inset-0 w-full h-full bg-black opacity-40"
       tabindex="-1"
     ></div>
     <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
