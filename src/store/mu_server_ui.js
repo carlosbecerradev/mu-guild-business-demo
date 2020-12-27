@@ -32,10 +32,26 @@ const actions = {
   resetMUServerModal({ commit }) {
     commit('RESET_MU_SERVER_MODAL')
   },
-  refreshMUServerView({ getters }) {
+  refreshMUServerOrders({ commit, getters }) {
     this.dispatch('resetMUServerModal')
+    this.dispatch('changeMUServerNavigationListItem', 'Orders');
     this.dispatch('fetchMUServerOrdersByMuServerId', getters['getCurrentMUServer'].id)
+    commit('UPDATE_DATA', getters['getMUServerOrders'])
+    this.dispatch('updatePage', 0)
+  },
+  refreshMyMUServerOrders({ commit, getters }) {
+    this.dispatch('resetMUServerModal')
+    this.dispatch('changeMUServerNavigationListItem', 'My Orders');
     this.dispatch('fetchMUServerOrdersByMuServerIdAndUserAccountLoggedIn', { mu_server_id: getters['getCurrentMUServer'].id, user_account_nickname: getters['getNickname'] })
+    commit('UPDATE_DATA', getters['getMyMUServerOrders'])
+    this.dispatch('updatePage', 0)
+  },
+  refreshMyMUServerOrderHistory({ commit, getters }) {
+    this.dispatch('resetMUServerModal')
+    this.dispatch('changeMUServerNavigationListItem', 'Order History');
+    this.dispatch('fetchMyMUServerOrderHistoryByMuServerIdAndUserAccountLoggedIn', { mu_server_id: getters['getCurrentMUServer'].id, user_account_nickname: getters['getNickname'] })
+    commit('UPDATE_DATA', getters['getMyMUServerOrderHistory'])
+    this.dispatch('updatePage', 0)
   },
 }
 
