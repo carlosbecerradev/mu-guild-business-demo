@@ -24,6 +24,11 @@ const routes = [
     name: 'MU Server',
     component: () => import(/* webpackChunkName: "MUServer" */ '../views/MUServer.vue')
   },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: () => import(/* webpackChunkName: "Profile" */ '../views/Profile.vue')
+  },
 ]
 
 const router = new VueRouter({

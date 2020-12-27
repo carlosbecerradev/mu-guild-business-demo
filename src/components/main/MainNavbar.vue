@@ -124,10 +124,10 @@
               aria-orientation="vertical"
               aria-labelledby="user-menu"
             >
-              <a
+              <router-link to="/profile" @click.native="dropdown = !dropdown"
                 class="block px-4 py-2 text-sm text-gray-700 hover:text-white hover:bg-gray-700 cursor-pointer"
                 role="menuitem"
-                >Your Profile</a>
+                >Your Profile</router-link>
               <a
                 @click="logout(); dropdown = !dropdown"
                 class="block px-4 py-2 text-sm text-gray-700 hover:text-white hover:bg-gray-700 cursor-pointer"
