@@ -1,4 +1,5 @@
 import orders_api from '@/api/orders'
+import Vue from 'vue'
 
 const state = {
   mu_server_orders: [],
@@ -17,7 +18,8 @@ const actions = {
     order.nickname = getters['getNickname']
     order.muServerId = getters['getCurrentMUServer'].id
     orders_api.save(order)
-    this.dispatch('refreshMUServerView')
+    this.dispatch('refreshMyMUServerOrders')
+    Vue.noty.success("Your new order was created!")
   },
   fetchOrder({ commit }, order_id) {
     commit('RECEIVE_ORDER', orders_api.getById(order_id))
@@ -25,12 +27,14 @@ const actions = {
   editOrder({ getters }, order) {
     order.id = getters['getCurrentOrder'].id
     orders_api.edit(order)
-    this.dispatch('refreshMUServerView')
+    this.dispatch('refreshMyMUServerOrders')
+    Vue.noty.success("Your order was edited!")
   },
   deleteOrder({ getters }) {
     let order_id = getters['getCurrentOrder'].id
     orders_api.delete(order_id)
-    this.dispatch('refreshMUServerView')
+    this.dispatch('refreshMyMUServerOrders')
+    Vue.noty.success("Your order was deleted!")
   },
 }
 
