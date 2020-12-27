@@ -1,5 +1,6 @@
 import user_accounts_api from '@/api/user_accounts'
 import router from '@/router'
+import Vue from 'vue'
 
 const state = {
   all: [],
@@ -22,6 +23,9 @@ const actions = {
         commit('set_nickname', userAccount.nickname)
         router.push('/')
         console.log('user_acounts_store', userAccount)
+        Vue.noty.success("Your login was successful!")
+      } else {
+        Vue.noty.error("Incorrect username or password!")
       }
     })
   },
