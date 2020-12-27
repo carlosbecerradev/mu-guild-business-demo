@@ -4,7 +4,7 @@
       <span class="sr-only">Filters</span>
       <order-filters
         :orders="getMUServerOrders"
-        @page:data="updateData"
+        @page:data="UPDATE_DATA"
         @page:update="updatePage"
       ></order-filters>
     </section>
@@ -46,7 +46,7 @@
                 </thead>
 
                 <tbody class="bg-white divide-y divide-gray-200">
-                  <tr v-for="order in page" :key="order.id">
+                  <tr v-for="order in getPagination.page" :key="order.id">
                     <td class="px-6 py-4 whitespace-nowrap">
                       <div class="flex items-center">
                         <div class="">
@@ -81,9 +81,9 @@
         </div>
         <div class="pt-2 pb-5">
           <pagination
-            :totalElements="data.length"
-            :currentPage="currentPage"
-            :elementsPerPage="elementsPerPage"
+            :totalElements="getPagination.data.length"
+            :currentPage="getPagination.currentPage"
+            :elementsPerPage="getPagination.elementsPerPage"
             @page:update="updatePage"
           >
           </pagination>
@@ -94,52 +94,31 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions, mapGetters, mapMutations } from "vuex";
 import useTimeAgo from "@/helpers/time_ago";
 import Pagination from "../complements/Pagination.vue";
 import OrderFilters from "../complements/OrderFilters";
 
 export default {
-  data() {
-    return {
-      data: [],
-      currentPage: 0,
-      elementsPerPage: 5,
-      page: [],
-    };
-  },
   components: { Pagination, OrderFilters },
   computed: {
-    ...mapGetters(["getMUServerOrders"]),
+    ...mapGetters(["getMUServerOrders", "getPagination"]),
   },
   methods: {
-    ...mapActions(["fetchMUServerOrdersByMuServerId"]),
+    ...mapMutations(["UPDATE_DATA"]),
+    ...mapActions([
+      "fetchMUServerOrdersByMuServerId",
+      "createPage",
+      "updatePage",
+    ]),
     useTimeAgo,
-    updatePage(pageNumber) {
-      this.currentPage = pageNumber;
-      this.createPage();
-    },
-    createPage() {
-      this.page = this.data.slice(
-        this.currentPage * this.elementsPerPage,
-        this.currentPage * this.elementsPerPage + this.elementsPerPage
-      );
-
-      // if we have 0 visible todos, go back a page
-      if (this.page.length == 0 && this.currentPage > 0) {
-        this.updatePage(this.currentPage - 1);
-      }
-    },
-    updateData(data) {
-      this.data = data;
-    },
   },
   beforeMount() {
-    this.createPage();
+    this.updatePage(0);
   },
   created() {
     this.fetchMUServerOrdersByMuServerId(this.$route.params.id);
-    this.updateData(this.getMUServerOrders);
+    this.UPDATE_DATA(this.getMUServerOrders);
   },
 };
 </script>
