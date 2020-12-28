@@ -42,9 +42,19 @@
                 <div class="col-span-12 md:col-span-6">
                   <div class="p-4 bg-white shadow-sm">
                     <div class="title text-lg font-bold border-b mb-4">
-                      New 1
+                      Login
                     </div>
-                    <p class="text-sm">Lorem ipsum dolor sit amet.</p>
+                    <div class="">
+                      <table class="table-auto w-full text-center">
+                        <thead>
+                          <tr class="border border-indigo-600 text-indigo-600"><th>Username</th><th>Password</th></tr>
+                        </thead>
+                        <tbody>
+                          <tr class="border border-indigo-600"><td>chars</td><td>12345</td></tr>
+                          <tr class="border border-indigo-600"><td>admin</td><td>12345</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
                 <div class="col-span-12 md:col-span-6">
