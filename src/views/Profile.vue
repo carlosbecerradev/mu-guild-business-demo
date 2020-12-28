@@ -44,6 +44,7 @@
                   class="block w-full py-1 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm"
                 />
                 <button
+                  @click="changeUserAccountNickname"
                   class="ml-auto text-sm bg-indigo-600 py-1 px-3 text-white"
                 >
                   Change
@@ -65,7 +66,7 @@ export default {
     ...mapGetters(["getProfile"]),
   },
   methods: {
-    ...mapActions(["fetchProfile", "validNickname"]),
+    ...mapActions(["fetchProfile", "validNickname", "changeUserAccountNickname"]),
   },
   created() {
     this.fetchProfile();

@@ -16,6 +16,9 @@ class Order {
 }
 
 export default {
+  getAllByUserAccountNickname(nickname) {
+    return _orders.filter(order => order.user_account.nickname == nickname)
+  },
   getAllByMUServerIdAndStateTrue(mu_server_id) {
     return _orders.filter(order => order.mu_server.id == mu_server_id && order.state == true).sort((a, b) => a - b)
   },

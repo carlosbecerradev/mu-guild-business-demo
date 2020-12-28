@@ -27,6 +27,15 @@ const actions = {
       Vue.noty.warning("The nickname must not be longer than 16 characters")
     }
   },
+  changeUserAccountNickname({ commit, state }) {
+    if (state.new_nickname != "") {
+      profile_api.changeNickname(localStorage.getItem('username'), state.new_nickname)
+      Vue.noty.success("Your nickname was changed")
+      this.dispatch('isAuthenticated')
+    }
+    this.dispatch('fetchProfile')
+    commit('SET_NICKNAME', "")
+  },
 }
 
 const mutations = {
