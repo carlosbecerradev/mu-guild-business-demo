@@ -1,4 +1,5 @@
 import order_history_api from '@/api/order_history'
+import Vue from 'vue'
 
 const state = {
   my_mu_server_order_history: [],
@@ -11,7 +12,8 @@ const actions = {
   finishOrder({ getters }, orderHistoryItem) {
     orderHistoryItem.order = getters['getCurrentOrder']
     order_history_api.save(orderHistoryItem)
-    this.dispatch('refreshMUServerView')
+    this.dispatch('refreshMyMUServerOrderHistory')
+    Vue.noty.success("Your order was finished!")
   },
 }
 
