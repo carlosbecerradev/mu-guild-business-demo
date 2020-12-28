@@ -37,6 +37,7 @@
                 class="overflow-hidden mt-1 flex w-full rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm"
               >
                 <input
+                  @input="validNickname($event.target.value)"
                   :value="getProfile.nickname"
                   type="text"
                   autocomplete="off"
@@ -64,7 +65,7 @@ export default {
     ...mapGetters(["getProfile"]),
   },
   methods: {
-    ...mapActions(["fetchProfile"]),
+    ...mapActions(["fetchProfile", "validNickname"]),
   },
   created() {
     this.fetchProfile();

@@ -1,7 +1,9 @@
 import profile_api from '@/api/profile'
+import Vue from 'vue'
 
 const state = {
   profile: {},
+  new_nickname: "",
 }
 
 const actions = {
@@ -9,11 +11,30 @@ const actions = {
     const username = localStorage.getItem('username')
     commit('RECEIVE_PROFILE', profile_api.getProfile(username))
   },
+  validNickname({ commit }, newNickname) {
+    if (newNickname == "" || newNickname.length < 1) {
+      return
+    }
+    if (newNickname.length < 16) {
+      if (!profile_api.existNickname(newNickname)) {
+        commit('SET_NICKNAME', newNickname)
+      } else {
+        commit('SET_NICKNAME', "")
+        Vue.noty.warning("This nickname already exist!")
+      }
+    } else {
+      commit('SET_NICKNAME', "")
+      Vue.noty.warning("The nickname must not be longer than 16 characters")
+    }
+  },
 }
 
 const mutations = {
   RECEIVE_PROFILE(state, profile) {
     state.profile = profile
+  },
+  SET_NICKNAME(state, newNickname) {
+    state.new_nickname = newNickname
   },
 }
 
