@@ -8,6 +8,7 @@ import items from './items'
 import item_options from './item_options'
 import item_categories from './item_categories'
 import pagination from './pagination'
+import profile from './profile'
 // ui helpers
 import mu_server_ui from './mu_server_ui'
 
@@ -30,5 +31,6 @@ export default new Vuex.Store({
     item_options,
     item_categories,
     pagination,
+    profile,
   }
 })
