@@ -5,7 +5,7 @@
     >
       <div>
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Profile
+          {{ getProfile.nickname }} Profile
         </h2>
       </div>
       <span class="sr-only">user account profile</span>
@@ -22,7 +22,7 @@
                 class="mt-1 block w-full py-1 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm"
               >
                 <div class="text-sm font-medium text-gray-900">
-                  user
+                  {{ getProfile.username }}
                 </div>
               </div>
             </div>
@@ -34,11 +34,14 @@
                 >Your Nickname</label
               >
               <div
-                class="overflow-hidden mt-1 flex w-full border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                class="overflow-hidden mt-1 flex w-full rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm"
               >
-                <div class="w-full text-sm font-medium text-gray-900 py-1 px-3">
-                  nick
-                </div>
+                <input
+                  :value="getProfile.nickname"
+                  type="text"
+                  autocomplete="off"
+                  class="block w-full py-1 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                />
                 <button
                   class="ml-auto text-sm bg-indigo-600 py-1 px-3 text-white"
                 >
@@ -52,3 +55,19 @@
     </div>
   </div>
 </template>
+
+<script>
+import { mapGetters, mapActions } from "vuex";
+
+export default {
+  computed: {
+    ...mapGetters(["getProfile"]),
+  },
+  methods: {
+    ...mapActions(["fetchProfile"]),
+  },
+  created() {
+    this.fetchProfile();
+  },
+};
+</script>
